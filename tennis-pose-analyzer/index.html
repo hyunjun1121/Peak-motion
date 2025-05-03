@@ -200,7 +200,9 @@
         if (navigator.hardwareConcurrency) {
           const optimalWorkers = Math.min(navigator.hardwareConcurrency - 1, 4);
           if (optimalWorkers > 0) {
-            tf.env().set('WEBGL_NUM_THREADS', optimalWorkers);
+            // WEBGL_NUM_THREADS is not registered in TF.js 4.10.0, removing this line
+            // tf.env().set('WEBGL_NUM_THREADS', optimalWorkers);
+            console.log('Hardware concurrency available: ' + navigator.hardwareConcurrency);
           }
         }
       });

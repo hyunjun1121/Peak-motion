@@ -177,6 +177,24 @@ function updatePlaybackSpeed() {
 }
 
 /**
+ * Show or hide loading UI
+ * @param {boolean} show - Whether to show or hide the loading UI
+ * @param {string} message - Optional custom message to display
+ */
+function showLoading(show, message = 'Loading model...') {
+  if (!loadingElement) return;
+  
+  if (show) {
+    loadingElement.classList.remove('hidden');
+    if (message) {
+      loadingElement.querySelector('p').textContent = message;
+    }
+  } else {
+    loadingElement.classList.add('hidden');
+  }
+}
+
+/**
  * Application initialization - progressive loading version
  */
 async function initialize() {
