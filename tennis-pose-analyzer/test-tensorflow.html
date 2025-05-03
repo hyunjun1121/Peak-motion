@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TensorFlow.js Test</title>
+  <!-- TensorFlow.js core library -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0"></script>
+  <!-- Pose estimation model library -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3"></script>
+</head>
+<body>
+  <h1>TensorFlow.js Test</h1>
+  <div id="status">Testing TensorFlow.js...</div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const statusEl = document.getElementById('status');
+      
+      try {
+        // Step 1: Check if TensorFlow.js is loaded
+        if (!window.tf) {
+          throw new Error('TensorFlow.js is not loaded properly');
+        }
+        statusEl.textContent = 'TensorFlow.js loaded ✓';
+        
+        // Step 2: Check WebGL backend
+        await tf.setBackend('webgl');
+        const backend = tf.getBackend();
+        statusEl.textContent += `\nBackend: ${backend} ✓`;
+        
+        // Step 3: Try to load a small model
+        statusEl.textContent += '\nAttempting to load MoveNet model...';
+        const detectorConfig = {
+          modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING,
+          enableSmoothing: true
+        };
+        
+        const detector = await poseDetection.createDetector(
+          poseDetection.SupportedModels.MoveNet, 
+          detectorConfig
+        );
+        
+        statusEl.textContent += '\nMoveNet model loaded successfully! ✓';
+        
+        // Step 4: Create a simple tensor and run inference
+        statusEl.textContent += '\nTesting model inference...';
+        const dummyTensor = tf.zeros([1, 192, 192, 3]);
+        await detector.estimatePoses(dummyTensor);
+        dummyTensor.dispose();
+        
+        statusEl.textContent += '\nModel inference successful! ✓';
+        statusEl.style.color = 'green';
+      } catch (error) {
+        statusEl.textContent += `\nERROR: ${error.message}`;
+        statusEl.style.color = 'red';
+        console.error('Test failed:', error);
+      }
+    });
+  </script>
+</body>
+</html>
