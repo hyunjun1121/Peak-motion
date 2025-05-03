@@ -5,7 +5,7 @@ export const currentUser: User = {
   id: '1',
   name: 'Hyunjun Kim',
   email: 'hyunjun@example.com',
-  avatar: '/image/김현준.jpg',
+  avatar: './image/김현준.jpg',
   level: 'Intermediate',
   joinedDate: '2024-03-15',
   commitmentDays: [1, 2, 4, 5], // Days of the week (0 = Sunday, 6 = Saturday)
@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
     date: '2024-06-01',
     duration: 45,
     mode: 'stroke',
-    thumbnail: '/image/Backhand Practice.jpg',
+    thumbnail: './image/Backhand Practice.jpg',
     videoUrl: '#',
     parameters: {
       power: 72,
@@ -59,7 +59,7 @@ export const lessons: Lesson[] = [
     date: '2024-05-28',
     duration: 60,
     mode: 'stroke',
-    thumbnail: '/image/Serve Training.jpg',
+    thumbnail: './image/Serve Training.jpg',
     videoUrl: '#',
     parameters: {
       power: 85,
@@ -79,7 +79,7 @@ export const lessons: Lesson[] = [
     date: '2024-05-25',
     duration: 90,
     mode: 'general',
-    thumbnail: '/image/Match Simulation.jpg',
+    thumbnail: './image/Match Simulation.jpg',
     videoUrl: '#',
     parameters: {
       power: 75,
@@ -100,7 +100,7 @@ export const lessons: Lesson[] = [
     date: '2024-05-20',
     duration: 75,
     mode: 'idol',
-    thumbnail: '/image/Federer-Style Practice.jpg',
+    thumbnail: './image/Federer-Style Practice.jpg',
     videoUrl: '#',
     parameters: {
       power: 70,
@@ -222,30 +222,30 @@ export const trainingModes: TrainingModeInfo[] = [
     id: 'tactics',
     name: 'Tactics Training',
     description: 'Focus on strategic aspects of your game, including court positioning, shot selection, and game management',
-    image: '/image/Tactics training.PNG',
+    image: './image/Tactics training.PNG',
   },
   {
     id: 'stroke',
     name: 'Stroke Practice',
     description: 'Develop and refine specific tennis strokes like forehand, backhand, serve, volley, and more',
-    image: '/image/Stroke practice.JPG',
+    image: './image/Stroke practice.JPG',
   },
   {
     id: 'challenges',
     name: 'Challenges',
     description: 'Take on specific drills and challenges designed to push your limits and test your skills',
-    image: '/image/Challenges.PNG',
+    image: './image/Challenges.PNG',
   },
   {
     id: 'idol',
     name: 'Idol Mode',
     description: 'Emulate the playing style of tennis legends like Federer, Nadal, Williams, and others',
-    image: '/image/Idol mode.PNG',
+    image: './image/Idol mode.PNG',
   },
   {
     id: 'general',
     name: 'General Training',
     description: 'Comprehensive sessions that simulate match conditions and cover all aspects of tennis',
-    image: '/image/General training.JPG',
+    image: './image/General training.JPG',
   },
 ];
