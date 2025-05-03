@@ -74,8 +74,9 @@ async function loadPoseDetectionModel(forceReload = false) {
         console.log('WebGL 2.0 지원 확인됨');
       }
       
-      // 타입 최적화
-      tf.env().set('WEBGL_FORCE_F16_TEXTURES', true);
+      // 타입 최적화 - 일부 환경에서 문제가 될 수 있어 비활성화
+      // tf.env().set('WEBGL_FORCE_F16_TEXTURES', true);
+      console.log('WEBGL_FORCE_F16_TEXTURES 옵션 비활성화');
       // 최적화 추가 설정
       tf.env().set('WEBGL_PACK', true);
       tf.env().set('WEBGL_FLUSH_THRESHOLD', 1);
@@ -90,6 +91,7 @@ async function loadPoseDetectionModel(forceReload = false) {
       try {
         // 진행률 업데이트
         updateLoadingProgress(0.3 * (attempts + 1));
+        console.log(`모델 로드 시도 ${attempts + 1}/${maxAttempts}...`);
         
         cachedModel = await poseDetection.createDetector(
           poseDetection.SupportedModels.MoveNet, 
